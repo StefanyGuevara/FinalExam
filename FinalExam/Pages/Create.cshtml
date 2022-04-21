@@ -1,0 +1,59 @@
+@page
+@model Quote.Pages.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1 class="display-4">Add Quote</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Quote.QuoteID" class="control-label">Quote ID</label>
+                <input asp-for="Quote.QuoteID" class="form-control" />
+                <span asp-validation-for="Quote.QuoteID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Quote.Date" class="control-label">Date</label>
+                <input asp-for="Quote.Date" class="form-control" />
+                <span asp-validation-for="Quote.Date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Quote.Subject" class="control-label">Subject</label>
+                <input asp-for="Quote.Subject" class="form-control" />
+                <span asp-validation-for="Quote.Subject" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Quote.Citation" class="control-label">Citation</label>
+                <input asp-for="Quote.Citation" class="form-control" />
+                <span asp-validation-for="Quote.Citation" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+                <label asp-for="Quote.QuoteID" class="control-label">Quotes</label>
+                <select asp-for="Quote.QuoteID" class="form-control">
+                    <option value="1">Like a Box of chocolate you never know what your going to get</option>
+                    <option value="2">just keep swimming, just keep swimming</option>
+                    <option value="3">look the sky is falling</option>
+                
+                </select>
+                <span asp-validation-for="Quote.QuoteID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

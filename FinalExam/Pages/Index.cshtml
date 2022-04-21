@@ -1,0 +1,94 @@
+@page
+@model Quote.Pages.IndexModel
+
+@{ ViewData["Title"] = "Quotes"; }
+
+<div class="dropdown float-right">
+    <br />
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Filter By Team
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" asp-route-id="0" asp-page="./Index">All Quotes</a>
+        <a class="dropdown-item" asp-route-id="1" asp-page="./Index">Marlins</a>
+        <a class="dropdown-item" asp-route-id="2" asp-page="./Index">Sharks</a>
+        <a class="dropdown-item" asp-route-id="3" asp-page="./Index">Terrapins</a>
+
+    </div>
+</div>
+@if (Model.QuoteID == 0)
+{
+    <h1 class="display-4">Quotes</h1>
+}
+else
+{
+    <h1 class="display-4">Quotes on the @Html.DisplayFor(m => m.Quote[0].Quote.QuoteID)</h1>
+}
+
+
+<p>
+    <a asp-page="Create">Add New Quote</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Last
+            </th>
+            <th>
+                First
+            </th>
+            <th>
+                Middle
+            </th>
+            <th>
+                Address
+            </th>
+            <th>
+                Phone
+            </th>
+            <th>
+                Team
+            </th>
+            <th>
+                Options
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Bowlers)
+        {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.BowlerLastName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.BowlerFirstName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.BowlerMiddleInit)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.BowlerAddress)
+        @Html.DisplayFor(modelItem => item.BowlerCity),
+        @Html.DisplayFor(modelItem => item.BowlerState)
+        @Html.DisplayFor(modelItem => item.BowlerZip)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.BowlerPhoneNumber)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Team.TeamName)
+    </td>
+    <td>
+        <a class="btn btn-warning" asp-page="./Edit" asp-route-id="@item.BowlerID"><i class="bi bi-pencil"></i></a>
+        <a class="btn btn-primary" asp-page="./Details" asp-route-id="@item.BowlerID">Details</a>
+        <a class="btn btn-danger" asp-page="./Delete" asp-route-id="@item.BowlerID"><i class="bi bi-trash"></i></a>
+    </td>
+</tr>
+}
+    </tbody>
+</table>
+
+
+

@@ -1,0 +1,78 @@
+@page
+@model Quote.Pages.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1 class="display-4">Edit Quote</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Bowlers.BowlerID" />
+            <div class="form-group">
+                <label asp-for="Bowlers.BowlerLastName" class="control-label">Last Name</label>
+                <input asp-for="Bowlers.BowlerLastName" class="form-control" />
+                <span asp-validation-for="Bowlers.BowlerLastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bowlers.BowlerFirstName" class="control-label">First Name</label>
+                <input asp-for="Bowlers.BowlerFirstName" class="form-control" />
+                <span asp-validation-for="Bowlers.BowlerFirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bowlers.BowlerMiddleInit" class="control-label">Middle Initial</label>
+                <input asp-for="Bowlers.BowlerMiddleInit" class="form-control" />
+                <span asp-validation-for="Bowlers.BowlerMiddleInit" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bowlers.BowlerAddress" class="control-label">Address</label>
+                <input asp-for="Bowlers.BowlerAddress" class="form-control" />
+                <span asp-validation-for="Bowlers.BowlerAddress" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bowlers.BowlerCity" class="control-label">City</label>
+                <input asp-for="Bowlers.BowlerCity" class="form-control" />
+                <span asp-validation-for="Bowlers.BowlerCity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bowlers.BowlerState" class="control-label">State Abbrev.</label>
+                <input asp-for="Bowlers.BowlerState" class="form-control" />
+                <span asp-validation-for="Bowlers.BowlerState" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bowlers.BowlerZip" class="control-label">Zip</label>
+                <input asp-for="Bowlers.BowlerZip" class="form-control" />
+                <span asp-validation-for="Bowlers.BowlerZip" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bowlers.BowlerPhoneNumber" class="control-label">Phone Number</label>
+                <input asp-for="Bowlers.BowlerPhoneNumber" class="form-control" />
+                <span asp-validation-for="Bowlers.BowlerPhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bowlers.TeamID" class="control-label">Team</label>
+                <select asp-for="Bowlers.TeamID" class="form-control">
+                    <option value="1">Marlins</option>
+                    <option value="2">Sharks</option>
+                    <option value="3">Terrapins</option>
+                </select>
+                <span asp-validation-for="Quote.QuoteID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
