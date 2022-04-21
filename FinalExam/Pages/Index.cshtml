@@ -6,13 +6,13 @@
 <div class="dropdown float-right">
     <br />
     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Filter By Team
+        Filter By Quotes
     </button>
     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
         <a class="dropdown-item" asp-route-id="0" asp-page="./Index">All Quotes</a>
-        <a class="dropdown-item" asp-route-id="1" asp-page="./Index">Marlins</a>
-        <a class="dropdown-item" asp-route-id="2" asp-page="./Index">Sharks</a>
-        <a class="dropdown-item" asp-route-id="3" asp-page="./Index">Terrapins</a>
+        <a class="dropdown-item" asp-route-id="1" asp-page="./Index">Like a Box of chocolate you never know what your going to get</a>
+        <a class="dropdown-item" asp-route-id="2" asp-page="./Index">just keep swimming, just keep swimming</a>
+        <a class="dropdown-item" asp-route-id="3" asp-page="./Index">Hakuna Matata</a>
 
     </div>
 </div>
@@ -33,59 +33,55 @@ else
     <thead>
         <tr>
             <th>
-                Last
+                Quote ID
             </th>
             <th>
-                First
+                Author
             </th>
             <th>
-                Middle
+                Date
             </th>
             <th>
-                Address
+                Subject
             </th>
             <th>
-                Phone
-            </th>
-            <th>
-                Team
-            </th>
-            <th>
-                Options
+                Citation
             </th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model.Bowlers)
+        @foreach (var item in Model.Quote)
         {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.BowlerLastName)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.BowlerFirstName)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.BowlerMiddleInit)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.BowlerAddress)
-        @Html.DisplayFor(modelItem => item.BowlerCity),
-        @Html.DisplayFor(modelItem => item.BowlerState)
-        @Html.DisplayFor(modelItem => item.BowlerZip)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.BowlerPhoneNumber)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Team.TeamName)
-    </td>
-    <td>
-        <a class="btn btn-warning" asp-page="./Edit" asp-route-id="@item.BowlerID"><i class="bi bi-pencil"></i></a>
-        <a class="btn btn-primary" asp-page="./Details" asp-route-id="@item.BowlerID">Details</a>
-        <a class="btn btn-danger" asp-page="./Delete" asp-route-id="@item.BowlerID"><i class="bi bi-trash"></i></a>
-    </td>
-</tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.QuoteID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Author)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Subject)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Citation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QuoteID)
+                @Html.DisplayFor(modelItem => item.Author),
+                @Html.DisplayFor(modelItem => item.Date)
+                @Html.DisplayFor(modelItem => item.Subject)
+                @Html.DisplayFor(modelItem => item.Citation)
+            </td>
+      
+            <td>
+                <a class="btn btn-warning" asp-page="./Edit" asp-route-id="@item.QuoteID"><i class="bi bi-pencil"></i></a>
+                <a class="btn btn-primary" asp-page="./Details" asp-route-id="@item.QuoteID">Details</a>
+                <a class="btn btn-danger" asp-page="./Delete" asp-route-id="@item.QuoteID"><i class="bi bi-trash"></i></a>
+            </td>
+        </tr>
 }
     </tbody>
 </table>
