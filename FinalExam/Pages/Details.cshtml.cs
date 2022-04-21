@@ -5,20 +5,20 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using Bowler.Models;
+using Quote.Models;
 
-namespace Bowler.Pages
+namespace Quote.Pages
 {
     public class DetailsModel : PageModel
     {
-        private readonly Bowler.Models.BowlersDbContext _context;
+        private readonly Quote.Models.QuotesDbContext _context;
 
-        public DetailsModel(Bowler.Models.BowlersDbContext context)
+        public DetailsModel(Quote.Models.QuotesDbContext context)
         {
             _context = context;
         }
 
-        public Bowlers Bowlers { get; set; }
+        public Quote Quote { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -27,10 +27,10 @@ namespace Bowler.Pages
                 return NotFound();
             }
 
-            Bowlers = await _context.Bowlers
-                .Include(b => b.Team).FirstOrDefaultAsync(m => m.BowlerID == id);
+            Quote = await _context.Quote
+                .Include(b => b.Team).FirstOrDefaultAsync(m => m.QuoteID == id);
 
-            if (Bowlers == null)
+            if (Quote == null)
             {
                 return NotFound();
             }

@@ -6,21 +6,21 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Bowler.Models;
+using Quote.Models;
 
-namespace Bowler.Pages
+namespace Quote.Pages
 {
     public class EditModel : PageModel
     {
-        private readonly Bowler.Models.BowlersDbContext _context;
+        private readonly Quote.Models.QuotesDbContext _context;
 
-        public EditModel(Bowler.Models.BowlersDbContext context)
+        public EditModel(Quote.Models.QuotesDbContext context)
         {
             _context = context;
         }
 
         [BindProperty]
-        public Bowlers Bowlers { get; set; }
+        public Quote quote { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -29,15 +29,15 @@ namespace Bowler.Pages
                 return NotFound();
             }
 
-            Bowlers = await _context.Bowlers
-                .Include(b => b.Team).FirstOrDefaultAsync(m => m.BowlerID == id);
+            quote = await _context.Bowlers
+                .Include(b => b.Team).FirstOrDefaultAsync(m => m.QuoteID == id);
 
-            if (Bowlers == null)
+            if (quote == null)
             {
                 return NotFound();
             }
-            ViewData["TeamName"] = new SelectList(_context.Set<Teams>(), "TeamName", "TeamName");
-            ViewData["TeamID"] = new SelectList(_context.Set<Teams>(), "TeamID", "TeamID");
+            ViewData["Author"] = new SelectList(_context.Set<Quote>(), "Author", "Author");
+            ViewData["QuoteID"] = new SelectList(_context.Set<Quote>(), "QuoteID", "QuoteID");
             return Page();
         }
 
@@ -50,7 +50,7 @@ namespace Bowler.Pages
                 return Page();
             }
 
-            _context.Attach(Bowlers).State = EntityState.Modified;
+            _context.Attach(quote).State = EntityState.Modified;
 
             try
             {
@@ -58,7 +58,7 @@ namespace Bowler.Pages
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!BowlersExists(Bowlers.BowlerID))
+                if (!BowlersExists(quote.QuoteID))
                 {
                     return NotFound();
                 }

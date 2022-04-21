@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Bowler.Models;
+using Quote.Models;
 
 namespace Bowler.Pages
 {
@@ -36,7 +36,7 @@ namespace Bowler.Pages
                 return Page();
             }
 
-            _context.Bowlers.Add(Bowlers);
+            _context.Quote.Add(Quotes);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");
